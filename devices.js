@@ -1430,7 +1430,19 @@ const devices = [
         description: 'LIGHTIFY LED PAR16 50 GU10 tunable white',
         supports: generic.light_onoff_brightness_colortemp.supports,
         toZigbee: generic.light_onoff_brightness_colortemp.toZigbee.concat([tz.osram_cmds]),
-        fromZigbee: generic.light_onoff_brightness_colortemp.fromZigbee,
+        fromZigbee: [
+          // genLevelCtrl
+          fz.ignore_light_brightness_report,
+          fz.ignore_light_brightness_change,
+
+          // lightingColorCtrl
+          fz.ignore_light_color_colortemp_report,
+          fz.ignore_light_color_colortemp_change,
+
+          // genOnOff
+          fz.ignore_onoff_report,
+          fz.ignore_onoff_change,
+        ].concat(defaultIgnoreConverters),
     },
     {
         zigbeeModel: ['Classic B40 TW - LIGHTIFY'],

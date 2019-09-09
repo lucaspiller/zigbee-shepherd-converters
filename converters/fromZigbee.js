@@ -3409,6 +3409,11 @@ const converters = {
         type: 'attReport',
         convert: (model, msg, publish, options) => null,
     },
+    ignore_light_color_colortemp_change: {
+        cid: 'lightingColorCtrl',
+        type: 'devChange',
+        convert: (model, msg, publish, options) => null,
+    },
 };
 
 module.exports = converters;
